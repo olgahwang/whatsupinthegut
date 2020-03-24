@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "CirceRounded";
+  src: url("../fonts/CirceRounded.otf");
+}
+
+#myCanvas {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  color: black;
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+    <link rel="stylesheet" type="text/css" href="./animate.css" />
+    <link rel="shortcut icon" href="">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css"
+      type="text/css"/>
+    <script src="./index.js"></script>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <!--<button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+    <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>-->
+    <div id="mainMenuDiv" class="bg">
+      <div id="menuElements">
+        <img src="../assets/logo.svg" style="width: 100%; margin-top: 50px">
+        <div id="menuText">
+          <div><h4 style="margin-top: 25px">select level</h4></div>
+          <div id="scrollTitle">
+            <p>SCROLL</p>
+            <img src="../assets/crank.png" style="height: 80%">
+          </div>
+        </div>
+      <div id="cards">
+        <div id="saladLevel" width="35%" onclick="saladChosen()">
+          <img style="padding: 15px 25px 15px 25px" src="../assets/salad-tile.png">
+        </div>
+        <div id="pizzaLevel" width="35%" onclick="pizzaChosen()">
+          <img style="padding: 15px 25px 15px 25px" src="../assets/pizza-tile.png">
+        </div>
+      </div>
+      <button class="continueButton" onclick="startClicked()">
+          <div id="stompContinueButton" class="buttonStyle">
+            <p>STOMP TO START</p>
+            <img id="stompContinue" src="../assets/stomp-continue.png">
+          </div>
+      </button>
+
+    </div>
+  </div>
+
+    <div class="wrapper" id="onboardingWrapper">
+      <div id="onboarding1" class="onboarding">
+        <h4>did you know?</h4>
+        <p style="line-height: 130%">
+          <span style="font-family: DottiesVanilla-Regular; font-size: 32px;">your gut is full of </span>
+          <span style="font-family: DottiesVanilla-ExtraBold; letter-spacing: 1px; font-size: 32px;">
+            good bacteria
+          </span>
+          <span style="font-family: DottiesVanilla-Regular; font-size: 32px;">
+            that work like a factory to help you
+          </span>
+          <span style="font-family: DottiesVanilla-ExtraBold; font-size: 32px;">
+            digest food
+          </span>
+          <span style="font-family: DottiesVanilla-Regular; font-size: 32px;">
+            and
+          </span>
+          <span style="font-family: DottiesVanilla-ExtraBold; font-size: 32px;">
+            fight off
+          </span>
+          <span style="font-family: DottiesVanilla-Regular; font-size: 32px;">
+            intruders!
+          </span>
+        </p>
+          <button class="continueButton" onclick="showSecondPage()">
+              <div id="stompContinueButton" class="buttonStyle">
+                <p>NEXT</p>
+                <img id="stompContinue" src="../assets/stomp-continue.png">
+              </div>
+          </button>
+      </div>
+      <div id="onboarding2" class="onboarding">
+        <p style="line-height: 170%; text-align: left;">
+          <span style="font-family: DottiesVanilla-Regular; font-size: 48px; line-height: 160%;">Your job as the </span>
+          <span style="font-family: DottiesVanilla-ExtraBold; letter-spacing: 1px; font-size: 48px;">
+            good bacteria
+          </span>
+          <span style="font-family: DottiesVanilla-Regular; font-size: 48px;">
+             is to
+          </span>
+          <span style="font-family: DottiesVanilla-ExtraBold; font-size: 48px;">
+            collect fiber
+          </span>
+          <span style="font-family: DottiesVanilla-Regular; font-size: 48px;">
+            and
+          </span>
+          <span style="font-family: DottiesVanilla-ExtraBold; font-size: 48px;">
+            zap bad bacteria.
+          </span>
+        </p>
+        <div class="onboardingContent">
+          <div class="wrapper-30">
+            <p style="margin-top:33px; line-height: 150%;">
+              <span style="font-family: DottiesVanilla-Regular; font-size: 27px;">lean </span>
+              <span style="font-family: DottiesVanilla-ExtraBold; letter-spacing: 1px; font-size: 27px;">
+                left and right
+              </span>
+              <span style="font-family: DottiesVanilla-Regular; font-size: 27px;">
+                to move under falling items
+              </span>
+            </p>
+            <img style="margin-top: 30px;" class="wrapper30Image" src="../assets/balanceBoard.png">
+          </div>
+          <div class="wrapper-30">
+            <p style="line-height: 110%; padding-top: 10px;">
+              <span style="font-family: DottiesVanilla-ExtraBold; letter-spacing: 1px; font-size: 27px;">slide up</span>
+              to collect
+              <span><img width="20px" src="../assets/triangle/triangle.png"></span><br>
+              <span style="font-family: DottiesVanilla-ExtraBold; letter-spacing: 1px; font-size: 27px;">
+                rotate crank
+              </span>
+              to collect
+              <span><img width="20px" src="../assets/circle/circle.png"></span>
+            </p>
+            <img class="wrapper30Image" src="../assets/controller.png">
+          </div>
+          <div class="wrapper-30">
+            <p style="margin-top:33px; line-height: 150%;">
+              <span style="font-family: DottiesVanilla-ExtraBold; letter-spacing: 1px; font-size: 27px;">
+                stomp
+              </span>
+              to zap bad bacteria
+            </p>
+            <img  style="margin-top: 40px;" style="margin-top: 30px;" class="wrapper30Image" src="../assets/stompPad.png">
+          </div>
+        </div>
+        <button class="continueButton" onclick="showThirdPage()">
+            <div id="stompContinueButton" class="buttonStyle">
+              <p>NEXT</p>
+              <img id="stompContinue" src="../assets/stomp-continue.png">
+            </div>
+        </button>
+      </div>
+      <div id="onboarding3" class="onboarding">
+        <p style="text-align: left; line-height: 44px;">
+          <span style="font-family: DottiesVanilla-Regular; font-size: 32px;">The factory makes </span>
+          <span style="font-size: 32px; letter-spacing: 1px; font-family: DottiesVanilla-ExtraBold;font-style: normal;">
+            health boosts
+          </span>
+          <span style="font-family: DottiesVanilla-Regular; font-size: 32px;">for the body with the fiber you collect.</span>
+        </p>
+        <div class="particlesOnboarding">
+          <div id="p1" class="particle animated zoomIn">
+            <img src="../assets/triangle.png">
+          </div>
+          <div id="p2" class="particle animated zoomIn delay-1s">
+            <img src="../assets/circle.png">
+          </div>
+          <div id="p3" class="particle animated zoomIn delay-2s">
+            <img src="../assets/circle.png">
+          </div>
+          <div id="p4" class="particle animated zoomIn delay-3s">
+            <img src="../assets/bacteria.png">
+          </div>
+        </div>
+        <button class="continueButton" onclick="continueToGame()">
+            <div id="stompContinueButton" class="buttonStyle">
+              <p>NEXT</p>
+              <img id="stompContinue" src="../assets/stomp-continue.png">
+            </div>
+        </button>
+      </div>
+    </div>
+
+  </body>
+</html>
