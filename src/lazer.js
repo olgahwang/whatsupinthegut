@@ -4,7 +4,7 @@ class Lazer {
     this.x = x;
     this.y = y;
     this.vy = 10;
-    this.image = loadImage("../assets/laz2.png");
+    this.image = loadImage("../assets/bb_object.png");
   }
 
   draw() {

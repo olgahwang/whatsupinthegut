@@ -22,7 +22,7 @@ let currentNutrients, producedGoods;
 
 //score and time
 let playerScore, time;
-let curNutX = innerWidth*0.47;
+let curNutX = innerWidth*0.48;
 let curNutY = innerHeight*0.935;
 
 let goodsX = innerWidth*0.65;
@@ -42,7 +42,7 @@ function preload() {
   bgImage = loadImage("../assets/backgroundGood.jpg");
   shipImage = loadImage("../assets/char2.png");
   shipX = windowWidth * 0.4;
-  shipY = windowHeight * 0.758;
+  shipY = windowHeight * 0.62;
   playerScore = 0;
   circeRounded = loadFont('../fonts/CirceRounded.otf');
   nutrGroup = new Group();
@@ -81,7 +81,6 @@ function setup() {
   nutrSound = loadSound('../sounds/hit.mp3');
   bactSound = loadSound('../sounds/explosion.mp3');
   beamSound = loadSound('../sounds/pick.mp3');
-  console.log(zapSound);
 }
 
 function draw() {
@@ -103,7 +102,7 @@ function draw() {
     }
   }
 
-  if (nutrGroup.length < 3 && nutriCount < 200) {
+  if (nutrGroup.length < 5 && nutriCount < 100) {
     nutrGroup.add(generateNutrSprite());
     nutriCount++;
     //barWidth+=1;
@@ -127,11 +126,17 @@ function draw() {
     curNutX = innerWidth*0.47
     playerScore++;
   }
+
+  if (currentNutrients.length > 3) {
+    currentNutrients.removeSprites();
+    curNutX = innerWidth*0.47
+  }
+
   drawSprites(nutrGroup, bactGroup, currentNutrients, producedGoods);
   fill(56, 64, 143);
   noStroke();
-  barWidth = 90-map(nutriCount, 0, 200, 0, 90);
-  rect(innerWidth*0.025, innerHeight*0.183,barWidth, 25);
+  barWidth = 88-map(nutriCount, 0, 100, 0, 88);
+  rect(innerWidth*0.024, innerHeight*0.1835,barWidth, 22);
 }
 
 
@@ -154,7 +159,7 @@ function generateBactSprite(){
   let tp = getRnd(0,2);
   if (tp == 0){
     spr.addAnimation ('t1-normal',
-          "../assets/bb-07.svg");
+          "../assets/bb-09.svg");
     spr.addAnimation ('t1-explosion',
     "../assets/bb1/bb1-1.png", "../assets/bb1/bb1-2.png", "../assets/bb1/bb1-3.png",
     "../assets/bb1/bb1-4.png", "../assets/bb1/bb1-5.png", "../assets/bb1/bb1-6.png",
@@ -175,12 +180,13 @@ function generateBactSprite(){
 
   if (tp == 2){
     spr.addAnimation ('t3-normal',
-          "../assets/bb-09.svg");
+          "../assets/bb-07.svg");
     spr.addAnimation ('t3-explosion',
     "../assets/bb3/bb3-1.png", "../assets/bb3/bb3-2.png", "../assets/bb3/bb3-3.png",
     "../assets/bb3/bb3-4.png", "../assets/bb3/bb3-5.png", "../assets/bb3/bb3-6.png",
     "../assets/bb3/bb3-7.png", "../assets/bb3/bb3-8.png", "../assets/bb3/bb3-9.png",
     "../assets/bb3/bb3-10.png", "../assets/bb3/bb3-11.png", "../assets/bb3/bb3-12.png");
+
     spr.animationDelay = 0;
   }
   return spr;
@@ -231,7 +237,7 @@ function generateNutrSprite(t){
   let x = getRnd(innerWidth*0.17, innerWidth-innerWidth*0.18);
   let y = getRnd(0, 50);
   let spr = createSprite(x, y);
-  spr.velocity.y = getRnd(1, 2);
+  spr.velocity.y = getRnd(0.7, 1.5);
   t = getRnd(0,1);
   if (t == 0){
     spr.addAnimation ('circle',

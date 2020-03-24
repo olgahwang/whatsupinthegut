@@ -8,18 +8,35 @@ class Ship {
       "../assets/char2.png"
     );
     this.shipMain.addAnimation('beamC',
-      "../assets/new/claw-triangle.png"
+      "../assets/circle_beam/c_beam-1.png",
+      "../assets/circle_beam/c_beam-2.png",
+      "../assets/circle_beam/c_beam-3.png",
+      "../assets/circle_beam/c_beam-4.png",
+      "../assets/circle_beam/c_beam-5.png",
+      "../assets/circle_beam/c_beam-6.png",
+      "../assets/circle_beam/c_beam-7.png",
+      "../assets/circle_beam/c_beam-8.png",
+      "../assets/circle_beam/c_beam-9.png",
     );
     this.shipMain.addAnimation('beamTr',
-      "../assets/new/claw-circle.png"
-    );
+    "../assets/triangle_beam/t_beam-1.png",
+    "../assets/triangle_beam/t_beam-2.png",
+    "../assets/triangle_beam/t_beam-3.png",
+    "../assets/triangle_beam/t_beam-4.png",
+    "../assets/triangle_beam/t_beam-5.png",
+    "../assets/triangle_beam/t_beam-6.png",
+    "../assets/triangle_beam/t_beam-7.png",
+    "../assets/triangle_beam/t_beam-8.png",
+    "../assets/triangle_beam/t_beam-9.png",
+  );
     this.shipMain.addAnimation('zap',
-    "../assets/new/claw-square.png"
+    "../assets/bb_zap.png"
     );
     this.shootDelay = 0;
     this.maxShootDelay = firingRate;
     this.beamTrLife = 0;
     this.beamCLife = 0;
+    this.beamZLife = 0;
     this.sprite = this.shipMain;
     this.easing = 0.05;
   }
@@ -33,11 +50,12 @@ class Ship {
       this.beamCLife--;
     }
 
-    if (this.beamTrLife == 0 && this.beamCLife == 0){
+    if (this.beamTrLife == 0 && this.beamCLife == 0 && this.beamZLife == 0){
       this.shipMain.changeAnimation('normal');
     }
     if (this.shootDelay > 0) {
       this.shootDelay--;
+      if (this.beamZLife > 0) this.beamZLife--;
     }
 
     push();
@@ -56,6 +74,7 @@ class Ship {
     if (keyIsDown(51)) {
       if (this.shootDelay === 0) {
         this.shipMain.changeAnimation('zap');
+        this.beamZLife = 5;
         this.shootDelay = this.maxShootDelay;
         lazers.push(new Lazer(this.x+35, this.y));
         zapSound.play();
@@ -67,7 +86,6 @@ class Ship {
       {
         this.shipMain.changeAnimation('beamC');
         this.beamCLife = 10;
-        beamSound.play();
       }
     }
 
@@ -76,7 +94,6 @@ class Ship {
       {
         this.shipMain.changeAnimation('beamTr');
         this.beamTrLife = 10;
-        beamSound.play();
       }
     }
     /*if (a > 0) {
