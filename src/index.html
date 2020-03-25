@@ -3,6 +3,7 @@
   <head>
     <link rel="stylesheet" type="text/css" href="./index.css" />
     <link rel="stylesheet" type="text/css" href="./animate.css" />
+    <link rel="stylesheet" type="text/css" href="./buttons.css" />
     <link rel="shortcut icon" href="">
     <link
       rel="stylesheet"
@@ -72,6 +73,12 @@
                 <img id="stompContinue" src="../assets/stomp-continue.png">
               </div>
           </button>
+          <button class="skipButton" onclick="showIntro()">
+              <div id="skipSlideButton" class="buttonStyle">
+                <img id="slideSkip" src="../assets/slide.png">
+                <p>SKIP</p>
+              </div>
+          </button>
       </div>
       <div id="onboarding2" class="onboarding">
         <p style="line-height: 170%; text-align: left;">
@@ -134,6 +141,14 @@
               <img id="stompContinue" src="../assets/stomp-continue.png">
             </div>
         </button>
+
+        <button class="skipButton" onclick="showIntro()">
+            <div id="skipSlideButton" class="buttonStyle">
+              <img id="slideSkip" src="../assets/slide.png">
+              <p>SKIP</p>
+            </div>
+        </button>
+
       </div>
       <div id="onboarding3" class="onboarding">
         <p style="text-align: left; line-height: 44px;">
@@ -157,10 +172,30 @@
             <img src="../assets/bacteria.png">
           </div>
         </div>
+        <button class="continueButton" onclick="showIntro()">
+            <div id="stompContinueButton" class="buttonStyle">
+              <p>NEXT</p>
+              <img id="stompContinue" src="../assets/stomp-continue.png">
+            </div>
+        </button>
+        <button class="skipButton" onclick="showIntro()">
+            <div id="skipSlideButton" class="buttonStyle">
+              <img id="slideSkip" src="../assets/slide.png">
+              <p>SKIP</p>
+            </div>
+        </button>
+      </div>
+      <div id="levelIntro" class="onboarding">
         <button class="continueButton" onclick="continueToGame()">
             <div id="stompContinueButton" class="buttonStyle">
               <p>NEXT</p>
               <img id="stompContinue" src="../assets/stomp-continue.png">
+            </div>
+        </button>
+        <button class="skipButton" onclick="showMainMenu()">
+            <div id="skipSlideButton" class="buttonStyle">
+              <img id="slideSkip" src="../assets/slide.png">
+              <p>EXIT</p>
             </div>
         </button>
       </div>

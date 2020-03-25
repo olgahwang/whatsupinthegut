@@ -19,6 +19,7 @@ let barWidth = 90;
 let explosionStart = -1;
 let char1;
 let currentNutrients, producedGoods;
+let propCount, acCount, butCount;
 
 //score and time
 let playerScore, time;
@@ -50,6 +51,9 @@ function preload() {
   lazersGroup = new Group();
   currentNutrients = new Group();
   producedGoods = new Group();
+  propCount = 0;
+  butCount = 0;
+  acCount = 0;
 }
 
 function setup() {
@@ -114,24 +118,10 @@ function draw() {
   textFont(circeRounded);
   textAlign(CENTER);
   textSize(50);
+  playerScore = producedGoods.length;
   text(playerScore, innerWidth*0.942, innerHeight*0.95);
-
-  if (currentNutrients.length == 3){
-    let spr = createSprite(goodsX, goodsY);
-    spr.addAnimation('normal', "../assets/bacteria.png");
-    spr.scale = 0.6;
-    producedGoods.add(spr);
-    currentNutrients.removeSprites();
-    goodsX+=50;
-    curNutX = innerWidth*0.47
-    playerScore++;
-  }
-
-  if (currentNutrients.length > 3) {
-    currentNutrients.removeSprites();
-    curNutX = innerWidth*0.47
-  }
-
+  generateGoodBacteria();
+  checkBoundingsGoods();
   drawSprites(nutrGroup, bactGroup, currentNutrients, producedGoods);
   fill(56, 64, 143);
   noStroke();
@@ -309,6 +299,101 @@ function bacNutrOverlap(){
           }
     }
 }
+}
+
+function generateGoodBacteria(){
+  if (currentNutrients.length == 3){
+    goodsY = innerHeight*0.935;
+    goodsX = random(innerWidth*0.624,innerWidth*0.9);
+    console.log(goodsX + " " + goodsY);
+    let spr = createSprite(goodsX, goodsY);
+    let tp = getRnd(0,2);
+    if (tp == 0){
+      spr.addAnimation('normal', "../assets/acetate.png");
+      acCount++;
+    } else if(tp == 1){
+        spr.addAnimation('normal', "../assets/but.png");
+        butCount++;
+    } else {
+        spr.addAnimation('normal', "../assets/prop.png");
+        propCount++;
+    }
+    spr.setCollider('circle',0,0, 40);
+    spr.setSpeed(random(0.5,1.5),random(0, 360));
+    producedGoods.add(spr);
+    currentNutrients.removeSprites();
+    curNutX = innerWidth*0.47
+  }
+  else if (currentNutrients.length > 3) {
+    var cnt = currentNutrients.length / 3;
+    for (let i = 0; i < cnt; i++){
+      goodsY = innerHeight*0.935;
+      goodsX = random(innerWidth*0.624,innerWidth*0.9);
+      console.log(goodsX + " " + goodsY);
+      let tp = getRnd(0,2);
+      if (tp == 0){
+        spr.addAnimation('normal', "../assets/acetate.png");
+        acCount++;
+      } else if(tp == 1){
+          spr.addAnimation('normal', "../assets/but.png");
+          butCount++;
+      } else {
+          spr.addAnimation('normal', "../assets/prop.png");
+          propCount++;
+      }
+      spr.setCollider('circle',0,0, 40);
+      spr.setSpeed(random(0.5,1.5),random(0, 360));
+      producedGoods.add(spr);
+      currentNutrients.removeSprites();
+      curNutX = innerWidth*0.47
+    }
+    var p = currentNutrients.length % 3;
+    curNutX = innerWidth*0.47
+    for (let i = 0; i < p; i++){
+      goodsY = innerHeight*0.935;
+      goodsX = random(innerWidth*0.624,innerWidth*0.9);
+      console.log(goodsX + " " + goodsY);
+      let spr = createSprite(goodsX, goodsY);
+      let tp = getRnd(0,2);
+      if (tp == 0){
+        spr.addAnimation('normal', "../assets/acetate.png");
+        acCount++;
+      } else if(tp == 1){
+          spr.addAnimation('normal', "../assets/but.png");
+          butCount++;
+      } else {
+          spr.addAnimation('normal', "../assets/prop.png");
+          propCount++;
+      }
+
+      spr.setSpeed(random(0.5,1.5),random(0, 360));
+      producedGoods.add(spr);
+      currentNutrients.removeSprites();
+      curNutX = innerWidth*0.47
+    }
+    currentNutrients.removeSprites();
+  }
+}
+
+function checkBoundingsGoods(){
+  for(var i=0; i<producedGoods.length; i++) {
+    var s = producedGoods[i];
+    if(s.position.x>innerWidth*0.9) {
+      s.velocity.x = -abs(s.velocity.x);
+    }
+
+    if(s.position.x<innerWidth*0.624) {
+      s.velocity.x = abs(s.velocity.x);
+    }
+
+    if(s.position.y>innerHeight*0.98) {
+      s.velocity.y = -abs(s.velocity.y);
+    }
+
+    if(s.position.y<innerHeight*0.9) {
+      s.velocity.y = abs(s.velocity.y);
+    }
+  }
 }
 
 

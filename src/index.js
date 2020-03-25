@@ -1,6 +1,36 @@
-var currentScreen = document.getElementById("onboarding1");
+var currentScreen = document.getElementById("mainMenuDiv");
 var chosenLevel = 0;
 var cur = 0;
+
+function showMainMenu(){
+  cur = 0;
+  currentScreen.style.display = "none";
+  currentScreen = document.getElementById("mainMenuDiv");
+  currentScreen.style.display = "flex";
+}
+
+function startClicked(){
+  cur = 0;
+  var oldBg = document.getElementById("mainMenuDiv");
+  oldBg.style.display = "none";
+  showFirstPage();
+}
+
+function pizzaChosen(){
+  chosenLevel = 1;
+  var pizza = document.getElementById("pizzaLevel");
+  pizza.style.boxShadow = "0px 0px 0px 4px #5FAD56";
+  var salad = document.getElementById("saladLevel");
+  salad.style.boxShadow = "0px 0px 0px 0px";
+}
+
+function saladChosen(){
+  chosenLevel = 0;
+  var salad = document.getElementById("saladLevel");
+  salad.style.boxShadow = "0px 0px 0px 4px #5FAD56";
+  var pizza = document.getElementById("pizzaLevel");
+  pizza.style.boxShadow = "0px 0px 0px 0px";
+}
 
 function showFirstPage() {
   currentScreen = document.getElementById("onboarding1");
@@ -24,50 +54,48 @@ function showThirdPage() {
   cur++;
 }
 
-function startClicked(){
-  var oldBg = document.getElementById("mainMenuDiv");
-  oldBg.style.display = "none";
-  showFirstPage();
-}
-
-function pizzaChosen(){
-  chosenLevel = 1;
-  var pizza = document.getElementById("pizzaLevel");
-  pizza.style.boxShadow = "0px 0px 0px 4px #5FAD56";
-  var salad = document.getElementById("saladLevel");
-  salad.style.boxShadow = "0px 0px 0px 0px";
-}
-
-function saladChosen(){
-  chosenLevel = 0;
-  var salad = document.getElementById("saladLevel");
-  salad.style.boxShadow = "0px 0px 0px 4px #5FAD56";
-  var pizza = document.getElementById("pizzaLevel");
-  pizza.style.boxShadow = "0px 0px 0px 0px";
+function showIntro() {
+  currentScreen.style.display = "none";
+  currentScreen = document.getElementById("levelIntro");
+  if (chosenLevel == 0){
+    currentScreen.style.backgroundImage = "url('../assets/saladIntro.jpg')";
+  } else if (chosenLevel == 1) {
+    currentScreen.style.backgroundImage = "url('../assets/pizzaIntro.jpg')";
+  }
+  currentScreen.style.display = "flex";
+  cur++;
 }
 
 function continueToGame(){
-  if (chosenLevel == 0) {
+  if (chosenLevel == 1) {
     window.location.href = './pizza.html';
-    console.log("Pizza");
   }
   else {
-    if (chosenLevel == 1) {
+    if (chosenLevel == 0) {
       window.location.href = './salad.html';
-      console.log("Salad");
     }
   }
 }
 
 document.addEventListener('keypress', function(event) {
     if(event.keyCode == 49) {
-      console.log("1 pressed");
-      if (chosenLevel == 0){
-        chosenLevel=1;
-        pizzaChosen();
-      } else if (chosenLevel == 1){
-        chosenLevel=0;
-        saladChosen();
+      if (currentScreen.id == "mainMenuDiv"){
+        if (chosenLevel == 0){
+          chosenLevel=1;
+          pizzaChosen();
+        } else if (chosenLevel == 1){
+          chosenLevel=0;
+          saladChosen();
+        }
+      }
+
+      if (currentScreen.id == "onboarding1" ||
+      currentScreen.id == "onboarding2" ||
+      currentScreen.id == "onboarding3"){
+        showIntro();
+
+      } else if (currentScreen.id == "levelIntro") {
+        showMainMenu();
       }
     }
     if (event.keyCode == 51) {
@@ -77,7 +105,10 @@ document.addEventListener('keypress', function(event) {
         showSecondPage();
       } else if (cur == 2) {
         showThirdPage();
-      } else if (cur == 3) {
+      } else if (cur == 3){
+        showIntro();
+      }
+      else if (cur == 4) {
         continueToGame();
       }
     }

@@ -1,0 +1,102 @@
+button {
+  border: 0 !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.buttonStyle {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: right;
+}
+
+.buttonsWidget {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+#stompContinue {
+  width: 102px;
+  height: 100px;
+  margin-left: 25px;
+}
+
+.continueButton {
+  border: 0 !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+
+  position: fixed;
+  bottom: 3%;
+  right: 65px;
+
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-row-reverse;
+}
+
+.continueButton:onclick {
+  border: 0 !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-row-reverse;
+}
+
+.continueButton:hover {
+  opacity: 0.8;
+}
+
+#slideSkip {
+  width: 102px;
+  height: 100px;
+  margin-right: 25px;
+}
+
+.skipButton {
+  border: 0 !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+
+  position: fixed;
+  bottom: 3%;
+  left: 65px;
+
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-row-reverse;
+}
+
+.skipButton:onclick {
+  border: 0 !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-row-reverse;
+}
+
+.skipButton:hover {
+  opacity: 0.8;
+}
