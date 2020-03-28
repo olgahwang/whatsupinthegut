@@ -6,7 +6,7 @@ let shipImage, bgImage;
 let circeRounded;
 let windowWidth = innerWidth,
   windowHeight = innerHeight;
-let zapSound, nutrSound, bactSound, beamSound;
+let zapSound, nutrSound, bactSound, beamSound, backgroundMusic;
 
 //ship, nutrients and bacterias
 var firingRate = 25; //  <--- tells you how often you can shoot a lazer
@@ -40,8 +40,6 @@ let sensor_data = '';*/
 
 
 function preload() {
-  //cirTexture = loadImage("../assets/1.png");
-  sqTexture = loadImage("../assets/tr1.png");
   bgImage = loadImage("../assets/bgBad.jpg");
   shipImage = loadImage("../assets/char2.png");
   shipX = windowWidth * 0.4;
@@ -56,6 +54,11 @@ function preload() {
   propCount = 0;
   acCount = 0;
   butCount = 0;
+  zapSound = loadSound('../sounds/shoot.mp3');
+  nutrSound = loadSound('../sounds/beam-collect.mp3');
+  bactSound = loadSound('../sounds/explosion.mp3');
+  beamSound = loadSound('../sounds/beam-shoot.mp3');
+  //backgroundMusic = loadSound('../sounds/21.mp3');
 }
 
 function setup() {
@@ -71,7 +74,6 @@ function setup() {
   char1.scale=0.6;
   char1.addAnimation('char1-normal', "../assets/char1.png");
   char1.changeAnimation('char1-normal');
-
   //data
   /*serial = new p5.SerialPort();
   serial.list();
@@ -83,16 +85,11 @@ function setup() {
   serial.on('open', gotOpen);
   serial.on('close', gotClose);*/
   //newBac = generateBactSprite();
-  zapSound = loadSound('../sounds/shoot.mp3');
-  nutrSound = loadSound('../sounds/hit.mp3');
-  bactSound = loadSound('../sounds/explosion.mp3');
-  beamSound = loadSound('../sounds/pick.mp3');
 }
 
 function draw() {
   background(bgImage);
   time = parseInt(frameCount / 60);
-
   //let ship_position = parseFloat(sensor_data);
   ship_position = 1;
   if(ship_position){
@@ -108,12 +105,12 @@ function draw() {
     }
   }
 
-  if (nutrGroup.length < 7 && nutriCount < 10) {
+  if (nutrGroup.length < 7 && nutriCount < 50) {
     nutrGroup.add(generateNutrSprite());
     nutriCount++;
     //barWidth+=1;
   } else {
-    if (nutriCount >= 10){
+    if (nutriCount >= 50){
       var curWindow = document.getElementById("myCanvas");
       curWindow.style.display = "none";
       document.getElementById("resultsWindow").style.display = "flex";
@@ -140,7 +137,7 @@ function draw() {
   noStroke();
   barWidth = 88-map(nutriCount, 0, 50, 0, 88);
   rect(innerWidth*0.024, innerHeight*0.218,barWidth, 23);
-
+  //backgroundMusic.play();
 }
 
 
@@ -244,7 +241,6 @@ function generateNutrSprite(t){
   spr.velocity.y = getRnd(1, 2);
   t = getRnd(0,1);
   if (t == 0){
-    cirCount++;
     spr.addAnimation ('circle',
           "../assets/circle/circle.png"
     );
@@ -257,7 +253,6 @@ function generateNutrSprite(t){
     spr.changeAnimation('circle');
     spr.frameDelay = 0;
   } else {
-    trCount++;
     spr.addAnimation ('triangle',
           "../assets/triangle/triangle.png"
     );
@@ -281,6 +276,7 @@ function updateNutrients(){
       if (ship.sprite.getAnimationLabel() == 'beamC' && nutrGroup[p].getAnimationLabel() == 'circle') {
         nutrGroup[p].changeAnimation('circle-explosion');
         nutrGroup[p].life = 30;
+        cirCount++;
         //barWidth+=5;
         let spr = createSprite(curNutX, curNutY);
         spr.addAnimation('normal', "../assets/circle/circle.png");
@@ -296,6 +292,7 @@ function updateNutrients(){
         spr.addAnimation('normal', "../assets/triangle/triangle.png");
         currentNutrients.add(spr);
         curNutX+=60;
+        trCount++;
       }
 
     }

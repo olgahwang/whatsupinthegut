@@ -24,6 +24,11 @@
 }
 
 @font-face {
+  font-family: "DottiesVanilla-Medium";
+  src: url("../fonts/DottiesVanilla-Medium.otf");
+}
+
+@font-face {
   font-family: "DottiesVanilla-ExtraBold";
   src: url("../fonts/DottiesVanilla-ExtraBold.otf");
 }
@@ -306,10 +311,18 @@ body, html {
 #fiberWindow {
   display: flex;
   flex-direction: row;
+  margin-top: 10px;
 }
 
 #leftContent {
   display: flex;
-  width: 70%;
+  width: 60%;
   flex-direction: column;
+}
+
+#rightContent {
+  display: flex;
+  width: 25%;
+  flex-direction: column;
+  margin-top: 150px;
 }

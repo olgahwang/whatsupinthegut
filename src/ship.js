@@ -72,12 +72,15 @@ class Ship {
     }
 
     if (keyIsDown(51)) {
-      if (this.shootDelay === 0) {
+      var doc = document.getElementById("resultsWindow").style.display;
+      if (this.shootDelay === 0 && doc != "flex") {
         this.shipMain.changeAnimation('zap');
         this.beamZLife = 5;
         this.shootDelay = this.maxShootDelay;
         lazers.push(new Lazer(this.x+35, this.y));
         zapSound.play();
+      } else {
+        showMainMenu();
       }
     }
 
@@ -86,6 +89,7 @@ class Ship {
       {
         this.shipMain.changeAnimation('beamC');
         this.beamCLife = 10;
+        beamSound.play();
       }
     }
 
@@ -94,6 +98,7 @@ class Ship {
       {
         this.shipMain.changeAnimation('beamTr');
         this.beamTrLife = 10;
+        beamSound.play();
       }
     }
     /*if (a > 0) {

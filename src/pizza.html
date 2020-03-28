@@ -24,15 +24,17 @@
   </head>
   <body>
     <div id="myCanvas"></div>
-    <div id="resultsWindow">
+    <div id="resultsWindow" class="animated fadeIn 2s">
       <div id="leftContent" style="flex-direction: column;">
         <div style="width: 100%;">
           <h1 style="font-family: DottiesVanilla-HeavyItalic;font-size: 100px; margin: 0px;">GREAT WORK</h1>
         </div>
-        <p>you've collected some fiber</p><br>
+        <div style="margin-top: 40px;">
+          <p style="font-family:DottiesVanilla-Medium; font-size: 32px;">you've collected some fiber</p><br>
+        </div>
         <div id="fiberWindow">
           <div>
-            <p style="margin-right: 20px; font-family:DottiesVanilla-BoldItalic; font-size: 40px;">
+            <p style="margin-right: 20px; margin-top: 10px; font-family:DottiesVanilla-BoldItalic; font-size: 40px;">
               <span id="triangles"></span>
               <span>
                 <img style="margin-left: 10px;" src="../assets/triangle/triangle.png">
@@ -40,7 +42,7 @@
             </p>
           </div>
           <div>
-            <p style="font-family:DottiesVanilla-BoldItalic; font-size: 40px;">
+            <p style="font-family:DottiesVanilla-BoldItalic;  margin-top: 10px; font-size: 40px;">
               <span id="circles"></span>
               <span>
                 <img style="margin-left: 10px;" src="../assets/circle/circle.png">
@@ -48,24 +50,53 @@
             </p>
           </div>
         </div>
-        <br><br>
-        <p id="butyrate"></p><span><img src="../assets/but.png"></span>
-        <p id="acetate"></p><span><img src="../assets/acetate.png"></span>
-        <p id="propionate"></p><span><img src="../assets/prop.png"></span>
-        <button class="continueButton" onclick="nextLevel()">
+        <div style="margin-top: 40px;">
+          <p style="font-family:DottiesVanilla-Medium; font-size: 32px;">that fiber turned into health boosts</p><br>
+        </div>
+        <div id="fiberWindow">
+          <div style="width: 150px; margin-right: 15px; display: flex; flex-direction: column;">
+            <div>
+              <p style="font-family:DottiesVanilla-BoldItalic; font-size: 40px; margin-top: 10px;">
+                <span id="butyrate"></span>
+                <span>
+                  <img style="margin-left: 10px;" src="../assets/butyratex2.png">
+                </span>
+              </p>
+            </div>
+            <div>
+              <p style="line-height: 120%;"><span style="font-family: DottiesVanilla-BoldItalic">butyrate </span><br> immunity boost</p>
+            </div>
+          </div>
+          <div style="width: 150px; margin-right: 15px;">
+            <p style="font-family:DottiesVanilla-BoldItalic;  margin-top: 10px; font-size: 40px;">
+              <span id="acetate"></span>
+              <span>
+                <img style="margin-left: 10px;" src="../assets/acetatex2.png">
+              </span>
+            </p>
+            <p style="line-height: 120%;"><span style="font-family: DottiesVanilla-BoldItalic">acetate</span><br>appetite control</p>
+          </div>
+
+          <div style="width: 150px;">
+            <p style="font-family:DottiesVanilla-BoldItalic;  margin-top: 10px; font-size: 40px;">
+              <span id="propionate"></span>
+              <span>
+                <img style="margin-left: 10px;" src="../assets/propionatex2.png">
+              </span><br>
+            </p>
+            <p style="line-height: 120%;"><span style="font-family: DottiesVanilla-BoldItalic">propionate</span><br> healthy heart</p>
+          </div>
+        </div>
+        <button class="continueButton" onclick="showMainMenu()">
             <div id="stompContinueButton" class="buttonStyle">
-              <p>GO TO NEXT LEVEL</p>
+              <div class="paragraph">GO TO MAIN MENU</div>
               <img id="stompContinue" src="../assets/stomp-continue.png">
             </div>
         </button>
-        <button class="skipButton" onclick="showMainMenu()">
-            <div id="skipSlideButton" class="buttonStyle">
-              <img id="slideSkip" src="../assets/slide.png">
-              <p>EXIT</p>
-            </div>
-        </button>
-      </div>
       <div id="rightContent">
+
+        <img style="width:100%" src="../assets/pizzaIcon.png">
+        <p style="font-family: DottiesVanilla-RegularItalic; line-height: 120%; text-align: center;">greasy food like pizza doesn’t have much fiber to help your gut</p>
       </div>
     </div>
   </body>

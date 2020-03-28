@@ -20,7 +20,7 @@ let explosionStart = -1;
 let char1;
 let currentNutrients, producedGoods;
 let propCount, acCount, butCount;
-
+let cirCount =0, trCount = 0;
 //score and time
 let playerScore, time;
 let curNutX = innerWidth*0.48;
@@ -82,9 +82,9 @@ function setup() {
   serial.on('close', gotClose);*/
   //newBac = generateBactSprite();
   zapSound = loadSound('../sounds/shoot.mp3');
-  nutrSound = loadSound('../sounds/hit.mp3');
+  nutrSound = loadSound('../assets/beam-collect.mp3');
   bactSound = loadSound('../sounds/explosion.mp3');
-  beamSound = loadSound('../sounds/pick.mp3');
+  beamSound = loadSound('../assets/beam-shoot.mp3');
 }
 
 function draw() {
@@ -106,16 +106,20 @@ function draw() {
     }
   }
 
-  if (nutrGroup.length < 5 && nutriCount < 100) {
+  if (nutrGroup.length < 5 && nutriCount < 10) {
     nutrGroup.add(generateNutrSprite());
     nutriCount++;
     //barWidth+=1;
   } else {
-    if (nutriCount >= 100){
-      //location.href ="./results.html";
+    if (nutriCount >= 10){
       var curWindow = document.getElementById("myCanvas");
       curWindow.style.display = "none";
       document.getElementById("resultsWindow").style.display = "flex";
+      document.getElementById("triangles").innerHTML = trCount;
+      document.getElementById("circles").innerHTML = cirCount;
+      document.getElementById("acetate").innerHTML = acCount;
+      document.getElementById("propionate").innerHTML = propCount;
+      document.getElementById("butyrate").innerHTML = butCount;
     }
   }
   bacNutrOverlap();
@@ -277,16 +281,20 @@ function updateNutrients(){
         spr.addAnimation('normal', "../assets/circle/circle.png");
         currentNutrients.add(spr);
         curNutX+=60;
+        nutrSound.play();
+        cirCount++;
       }
 
       if (ship.sprite.getAnimationLabel() == 'beamTr' && nutrGroup[p].getAnimationLabel() == 'triangle') {
         nutrGroup[p].changeAnimation('triangle-explosion');
         nutrGroup[p].life = 30;
+        nutrSound.play();
         //barWidth+=5;
         let spr = createSprite(curNutX, curNutY);
         spr.addAnimation('normal', "../assets/triangle/triangle.png");
         currentNutrients.add(spr);
         curNutX+=60;
+        trCount++;
       }
 
     }
@@ -336,6 +344,7 @@ function generateGoodBacteria(){
     for (let i = 0; i < cnt; i++){
       goodsY = innerHeight*0.935;
       goodsX = random(innerWidth*0.624,innerWidth*0.9);
+      let spr = createSprite(goodsX, goodsY);
       console.log(goodsX + " " + goodsY);
       let tp = getRnd(0,2);
       if (tp == 0){
@@ -403,6 +412,10 @@ function checkBoundingsGoods(){
   }
 }
 
+
+function showMainMenu(){
+  location.href="./index.html";
+}
 
 
 
