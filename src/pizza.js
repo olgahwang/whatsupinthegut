@@ -105,12 +105,12 @@ function draw() {
     }
   }
 
-  if (nutrGroup.length < 7 && nutriCount < 50) {
+  if (nutrGroup.length < 7 && nutriCount <70) {
     nutrGroup.add(generateNutrSprite());
     nutriCount++;
     //barWidth+=1;
   } else {
-    if (nutriCount >= 50){
+    if (nutriCount >= 70){
       var curWindow = document.getElementById("myCanvas");
       curWindow.style.display = "none";
       document.getElementById("resultsWindow").style.display = "flex";
