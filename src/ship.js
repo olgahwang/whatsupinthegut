@@ -79,7 +79,7 @@ class Ship {
         this.shootDelay = this.maxShootDelay;
         lazers.push(new Lazer(this.x+35, this.y));
         zapSound.play();
-      } else {
+      } else if (doc == "flex"){
         showMainMenu();
       }
     }
