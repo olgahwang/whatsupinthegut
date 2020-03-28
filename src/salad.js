@@ -40,12 +40,12 @@ let sensor_data = '';*/
 function preload() {
   //cirTexture = loadImage("../assets/1.png");
   sqTexture = loadImage("../assets/tr1.png");
-  bgImage = loadImage("../assets/backgroundGood.jpg");
+  bgImage = loadImage("../assets/bgGood.jpg");
   shipImage = loadImage("../assets/char2.png");
   shipX = windowWidth * 0.4;
   shipY = windowHeight * 0.62;
   playerScore = 0;
-  circeRounded = loadFont('../fonts/CirceRounded.otf');
+  circeRounded = loadFont('../fonts/DottiesVanilla-Bold.otf');
   nutrGroup = new Group();
   bactGroup = new Group();
   lazersGroup = new Group();
@@ -99,7 +99,7 @@ function draw() {
     ship.draw(0);
   }
 
-  if (time % 10 == 0){
+  if (time % 20 == 0){
     if (bactGroup.length < 2) {
       newBac = generateBactSprite();
       bactGroup.add(newBac);
@@ -110,23 +110,30 @@ function draw() {
     nutrGroup.add(generateNutrSprite());
     nutriCount++;
     //barWidth+=1;
+  } else {
+    if (nutriCount >= 100){
+      //location.href ="./results.html";
+      var curWindow = document.getElementById("myCanvas");
+      curWindow.style.display = "none";
+      document.getElementById("resultsWindow").style.display = "flex";
+    }
   }
   bacNutrOverlap();
   updateBacteria();
   updateNutrients();
-  fill(224, 75, 55);
+  fill(139, 57, 93);
   textFont(circeRounded);
   textAlign(CENTER);
   textSize(50);
   playerScore = producedGoods.length;
-  text(playerScore, innerWidth*0.942, innerHeight*0.95);
+  text(playerScore, innerWidth*0.942, innerHeight*0.956);
   generateGoodBacteria();
   checkBoundingsGoods();
   drawSprites(nutrGroup, bactGroup, currentNutrients, producedGoods);
   fill(56, 64, 143);
   noStroke();
   barWidth = 88-map(nutriCount, 0, 100, 0, 88);
-  rect(innerWidth*0.024, innerHeight*0.1835,barWidth, 22);
+  rect(innerWidth*0.024, innerHeight*0.218,barWidth, 23);
 }
 
 

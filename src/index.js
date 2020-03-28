@@ -77,6 +77,17 @@ function continueToGame(){
   }
 }
 
+function nextLevel(){
+  if (chosenLevel == 0) {
+    window.location.href = './pizza.html';
+  }
+  else {
+    if (chosenLevel == 1) {
+      window.location.href = './salad.html';
+    }
+  }
+}
+
 document.addEventListener('keypress', function(event) {
     if(event.keyCode == 49) {
       if (currentScreen.id == "mainMenuDiv"){

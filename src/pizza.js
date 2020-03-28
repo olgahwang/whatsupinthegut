@@ -20,6 +20,7 @@ let explosionStart = -1;
 let char1;
 let currentNutrients, producedGoods;
 let propCount, acCount, butCount;
+let trCount = 0, cirCount = 0;
 
 //score and time
 let playerScore, time;
@@ -28,6 +29,7 @@ let curNutY = innerHeight*0.935;
 
 let goodsX = innerWidth*0.65;
 let goodsY = innerHeight*0.935;
+let countDown = 999;
 
 //data
 /*let serial;
@@ -40,12 +42,12 @@ let sensor_data = '';*/
 function preload() {
   //cirTexture = loadImage("../assets/1.png");
   sqTexture = loadImage("../assets/tr1.png");
-  bgImage = loadImage("../assets/backgroundBad.jpg");
+  bgImage = loadImage("../assets/bgBad.jpg");
   shipImage = loadImage("../assets/char2.png");
   shipX = windowWidth * 0.4;
   shipY = windowHeight * 0.62;
   playerScore = 0;
-  circeRounded = loadFont('../fonts/CirceRounded.otf');
+  circeRounded = loadFont('../fonts/DottiesVanilla-Bold.otf');
   nutrGroup = new Group();
   bactGroup = new Group();
   lazersGroup = new Group();
@@ -106,27 +108,39 @@ function draw() {
     }
   }
 
-  if (nutrGroup.length < 7 && nutriCount < 50) {
+  if (nutrGroup.length < 7 && nutriCount < 10) {
     nutrGroup.add(generateNutrSprite());
     nutriCount++;
     //barWidth+=1;
+  } else {
+    if (nutriCount >= 10){
+      var curWindow = document.getElementById("myCanvas");
+      curWindow.style.display = "none";
+      document.getElementById("resultsWindow").style.display = "flex";
+      document.getElementById("triangles").innerHTML = trCount;
+      document.getElementById("circles").innerHTML = cirCount;
+      document.getElementById("acetate").innerHTML = acCount;
+      document.getElementById("propionate").innerHTML = propCount;
+      document.getElementById("butyrate").innerHTML = butCount;
+    }
   }
   bacNutrOverlap();
   updateBacteria();
   updateNutrients();
-  fill(224, 75, 55);
+  fill(139, 57, 93);
   textFont(circeRounded);
   textAlign(CENTER);
   textSize(50);
   generateGoodBacteria();
   checkBoundingsGoods();
   playerScore = producedGoods.length;
-  text(playerScore, innerWidth*0.942, innerHeight*0.95);
+  text(playerScore, innerWidth*0.942, innerHeight*0.956);
   drawSprites(nutrGroup, bactGroup, currentNutrients, producedGoods);
   fill(56, 64, 143);
   noStroke();
   barWidth = 88-map(nutriCount, 0, 50, 0, 88);
-  rect(innerWidth*0.024, innerHeight*0.1835,barWidth, 22);
+  rect(innerWidth*0.024, innerHeight*0.218,barWidth, 23);
+
 }
 
 
@@ -230,6 +244,7 @@ function generateNutrSprite(t){
   spr.velocity.y = getRnd(1, 2);
   t = getRnd(0,1);
   if (t == 0){
+    cirCount++;
     spr.addAnimation ('circle',
           "../assets/circle/circle.png"
     );
@@ -242,6 +257,7 @@ function generateNutrSprite(t){
     spr.changeAnimation('circle');
     spr.frameDelay = 0;
   } else {
+    trCount++;
     spr.addAnimation ('triangle',
           "../assets/triangle/triangle.png"
     );
@@ -397,7 +413,9 @@ function checkBoundingsGoods(){
   }
 }
 
-
+function showMainMenu(){
+  location.href="./index.html";
+}
 
 
 // Got the list of ports

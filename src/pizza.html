@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+    <link rel="stylesheet" type="text/css" href="./animate.css" />
+    <link rel="stylesheet" type="text/css" href="./buttons.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css"
@@ -22,5 +24,49 @@
   </head>
   <body>
     <div id="myCanvas"></div>
+    <div id="resultsWindow">
+      <div id="leftContent" style="flex-direction: column;">
+        <div style="width: 100%;">
+          <h1 style="font-family: DottiesVanilla-HeavyItalic;font-size: 100px; margin: 0px;">GREAT WORK</h1>
+        </div>
+        <p>you've collected some fiber</p><br>
+        <div id="fiberWindow">
+          <div>
+            <p style="margin-right: 20px; font-family:DottiesVanilla-BoldItalic; font-size: 40px;">
+              <span id="triangles"></span>
+              <span>
+                <img style="margin-left: 10px;" src="../assets/triangle/triangle.png">
+              </span>
+            </p>
+          </div>
+          <div>
+            <p style="font-family:DottiesVanilla-BoldItalic; font-size: 40px;">
+              <span id="circles"></span>
+              <span>
+                <img style="margin-left: 10px;" src="../assets/circle/circle.png">
+              </span>
+            </p>
+          </div>
+        </div>
+        <br><br>
+        <p id="butyrate"></p><span><img src="../assets/but.png"></span>
+        <p id="acetate"></p><span><img src="../assets/acetate.png"></span>
+        <p id="propionate"></p><span><img src="../assets/prop.png"></span>
+        <button class="continueButton" onclick="nextLevel()">
+            <div id="stompContinueButton" class="buttonStyle">
+              <p>GO TO NEXT LEVEL</p>
+              <img id="stompContinue" src="../assets/stomp-continue.png">
+            </div>
+        </button>
+        <button class="skipButton" onclick="showMainMenu()">
+            <div id="skipSlideButton" class="buttonStyle">
+              <img id="slideSkip" src="../assets/slide.png">
+              <p>EXIT</p>
+            </div>
+        </button>
+      </div>
+      <div id="rightContent">
+      </div>
+    </div>
   </body>
 </html>

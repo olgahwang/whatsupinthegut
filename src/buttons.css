@@ -42,6 +42,7 @@ button {
   display: flex;
   justify-content: flex-end;
   flex-direction: row-row-reverse;
+  align-items: center;
 }
 
 .continueButton:onclick {
@@ -55,6 +56,7 @@ button {
   display: flex;
   justify-content: flex-end;
   flex-direction: row-row-reverse;
+  align-items: center;
 }
 
 .continueButton:hover {
