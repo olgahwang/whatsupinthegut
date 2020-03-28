@@ -105,7 +105,7 @@ function draw() {
     }
   }
 
-  if (nutrGroup.length < 7 && nutriCount <70) {
+  if (nutrGroup.length < 7 && nutriCount < 70) {
     nutrGroup.add(generateNutrSprite());
     nutriCount++;
     //barWidth+=1;

@@ -54,6 +54,10 @@ function preload() {
   propCount = 0;
   butCount = 0;
   acCount = 0;
+  zapSound = loadSound('../sounds/shoot.mp3');
+  nutrSound = loadSound('../sounds/beam-collect.mp3');
+  bactSound = loadSound('../sounds/explosion.mp3');
+  beamSound = loadSound('../sounds/beam-shoot.mp3');
 }
 
 function setup() {
@@ -81,10 +85,6 @@ function setup() {
   serial.on('open', gotOpen);
   serial.on('close', gotClose);*/
   //newBac = generateBactSprite();
-  zapSound = loadSound('../sounds/shoot.mp3');
-  nutrSound = loadSound('../assets/beam-collect.mp3');
-  bactSound = loadSound('../sounds/explosion.mp3');
-  beamSound = loadSound('../assets/beam-shoot.mp3');
 }
 
 function draw() {
@@ -106,12 +106,12 @@ function draw() {
     }
   }
 
-  if (nutrGroup.length < 5 && nutriCount < 10) {
+  if (nutrGroup.length < 5 && nutriCount < 100) {
     nutrGroup.add(generateNutrSprite());
     nutriCount++;
     //barWidth+=1;
   } else {
-    if (nutriCount >= 10){
+    if (nutriCount >= 100){
       var curWindow = document.getElementById("myCanvas");
       curWindow.style.display = "none";
       document.getElementById("resultsWindow").style.display = "flex";
