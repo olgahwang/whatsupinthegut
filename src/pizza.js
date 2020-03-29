@@ -1,13 +1,12 @@
 //debugging
 var showDebugMessages = false;
-
 //media
 let shipImage, bgImage;
 let circeRounded;
 let windowWidth = innerWidth,
   windowHeight = innerHeight;
 let zapSound, nutrSound, bactSound, beamSound, backgroundMusic;
-
+let switchDelay=10;
 //ship, nutrients and bacterias
 var firingRate = 25; //  <--- tells you how often you can shoot a lazer
 var nutrGroup, bactGroup;
@@ -30,7 +29,7 @@ let curNutY = innerHeight*0.935;
 let goodsX = innerWidth*0.65;
 let goodsY = innerHeight*0.935;
 let countDown = 999;
-
+let lim1 = 1.25, lim2 = 1.5, lim3 = 3;
 //data
 /*let serial;
 let latestData = "waiting for data";  // you'll use this to write incoming data to the canvas
@@ -105,20 +104,22 @@ function draw() {
     }
   }
 
-  if (nutrGroup.length < 7 && nutriCount < 70) {
+  if (nutrGroup.length < lim3 && nutriCount < 70) {
     nutrGroup.add(generateNutrSprite());
     nutriCount++;
-    //barWidth+=1;
   } else {
-    if (nutriCount >= 70){
-      var curWindow = document.getElementById("myCanvas");
-      curWindow.style.display = "none";
-      document.getElementById("resultsWindow").style.display = "flex";
-      document.getElementById("triangles").innerHTML = trCount;
-      document.getElementById("circles").innerHTML = cirCount;
-      document.getElementById("acetate").innerHTML = acCount;
-      document.getElementById("propionate").innerHTML = propCount;
-      document.getElementById("butyrate").innerHTML = butCount;
+    if (nutriCount >= 70 && nutrGroup.length == 0){
+      switchDelay--;
+      if (switchDelay == 0){
+        var curWindow = document.getElementById("myCanvas");
+        curWindow.style.display = "none";
+        document.getElementById("resultsWindow").style.display = "flex";
+        document.getElementById("triangles").innerHTML = trCount;
+        document.getElementById("circles").innerHTML = cirCount;
+        document.getElementById("acetate").innerHTML = acCount;
+        document.getElementById("propionate").innerHTML = propCount;
+        document.getElementById("butyrate").innerHTML = butCount;
+      }
     }
   }
   bacNutrOverlap();
@@ -135,7 +136,7 @@ function draw() {
   drawSprites(nutrGroup, bactGroup, currentNutrients, producedGoods);
   fill(56, 64, 143);
   noStroke();
-  barWidth = 88-map(nutriCount, 0, 50, 0, 88);
+  barWidth = 88-map(nutriCount, 0, 70, 0, 88);
   rect(innerWidth*0.024, innerHeight*0.218,barWidth, 23);
   //backgroundMusic.play();
 }
@@ -212,7 +213,10 @@ function updateBacteria(){
           {
             lazers.splice(i, 1);
             if (bactGroup[j].getAnimationLabel() == 't1-normal'){
+              let s;
+              s = bactGroup[j].scale;
               bactGroup[j].changeAnimation('t1-explosion');
+              bactGroup[j].scale = s;
             }
             if (bactGroup[j].getAnimationLabel() == 't2-normal'){
               bactGroup[j].changeAnimation('t2-explosion');
@@ -238,7 +242,7 @@ function generateNutrSprite(t){
   let x = getRnd(innerWidth*0.17, innerWidth-innerWidth*0.18);
   let y = getRnd(0, 50);
   let spr = createSprite(x, y);
-  spr.velocity.y = getRnd(1, 2);
+  spr.velocity.y = getRnd(lim1, lim2);
   t = getRnd(0,1);
   if (t == 0){
     spr.addAnimation ('circle',
@@ -318,7 +322,6 @@ function generateGoodBacteria(){
   if (currentNutrients.length == 3){
     goodsY = innerHeight*0.935;
     goodsX = random(innerWidth*0.624,innerWidth*0.9);
-    console.log(goodsX + " " + goodsY);
     let spr = createSprite(goodsX, goodsY);
     let tp = getRnd(0,2);
     if (tp == 0){
@@ -343,7 +346,6 @@ function generateGoodBacteria(){
       let spr = createSprite(goodsX, goodsY);
       goodsY = innerHeight*0.935;
       goodsX = random(innerWidth*0.624,innerWidth*0.9);
-      console.log(goodsX + " " + goodsY);
       let tp = getRnd(0,2);
       if (tp == 0){
         spr.addAnimation('normal', "../assets/acetate.png");
@@ -366,7 +368,6 @@ function generateGoodBacteria(){
     for (let i = 0; i < p; i++){
       goodsY = innerHeight*0.935;
       goodsX = random(innerWidth*0.624,innerWidth*0.9);
-      console.log(goodsX + " " + goodsY);
       let spr = createSprite(goodsX, goodsY);
       let tp = getRnd(0,2);
       if (tp == 0){
