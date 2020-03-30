@@ -55,10 +55,10 @@ function preload() {
   propCount = 0;
   butCount = 0;
   acCount = 0;
-  zapSound = loadSound('../sounds/shoot.mp3');
+  zapSound = loadSound('../sounds/hitnew.mp3');
   nutrSound = loadSound('../sounds/beam-collect.mp3');
-  bactSound = loadSound('../sounds/explosion.mp3');
-  beamSound = loadSound('../sounds/beam-shoot.mp3');
+  bactSound = loadSound('../sounds/explosion2.mp3');
+  beamSound = loadSound('../sounds/beam-shoot3.mp3');
 }
 
 function setup() {
@@ -91,7 +91,6 @@ function setup() {
 function draw() {
   background(bgImage);
   time = parseInt(frameCount / 60);
-
   //let ship_position = parseFloat(sensor_data);
   ship_position = 1;
   if(ship_position){

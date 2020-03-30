@@ -58,9 +58,9 @@ function showIntro() {
   currentScreen.style.display = "none";
   currentScreen = document.getElementById("levelIntro");
   if (chosenLevel == 0){
-    currentScreen.style.backgroundImage = "url('../assets/saladIntro.jpg')";
+    currentScreen.style.backgroundImage = "url('../assets/salad.jpg')";
   } else if (chosenLevel == 1) {
-    currentScreen.style.backgroundImage = "url('../assets/pizzaIntro.jpg')";
+    currentScreen.style.backgroundImage = "url('../assets/pizza.jpg')";
   }
   currentScreen.style.display = "flex";
   cur++;

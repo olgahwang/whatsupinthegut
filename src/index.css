@@ -305,7 +305,7 @@ body, html {
   display: none;
   width: 100%;
   flex-direction: row;
-  margin:50px 50px 50px 50px;
+  margin:30px 50px 50px 50px;
 }
 
 #fiberWindow {
@@ -322,7 +322,8 @@ body, html {
 
 #rightContent {
   display: flex;
-  width: 20%;
+  width: 30%;
   flex-direction: column;
-  margin-top: 150px;
+  justify-content: center;
+  align-items: center;
 }
