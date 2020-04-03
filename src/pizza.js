@@ -103,11 +103,11 @@ function draw() {
     }
   }
 
-  if (nutrGroup.length < lim3 && nutriCount < 10) {
+  if (nutrGroup.length < lim3 && nutriCount < 70) {
     nutrGroup.add(generateNutrSprite());
     nutriCount++;
   } else {
-    if (nutriCount >= 10 && nutrGroup.length == 0){
+    if (nutriCount >= 70 && nutrGroup.length == 0){
       switchDelay--;
       if (switchDelay == 0){
         var curWindow = document.getElementById("myCanvas");
